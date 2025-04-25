@@ -4,7 +4,8 @@ import random
 TAMANHO_POPULACAO = 50
 TAMANHO_GENOMA = 100
 GERACOES = 500
-TAXA_MUTACAO = 0.05
+TAXA_MUTACAO = 0.05 #NOTE: utilize 0.1 para o torneio, 0.01 para a primeira roleta e 0.005 para a segunda roleta
+
 
 #INFO: passo 1: Inicializacao da populacao
 def inicializar_populacao():
@@ -62,6 +63,8 @@ def algoritmo_genetico():
 
         #criar nova geracao com cruzamento e mutacao
         while len(nova_populacao) < TAMANHO_POPULACAO:
+            #NOTE: existem duas funcoes para selecionar os pais
+            # o metodo do torneio eh mais eficiente
             pai1,pai2 = selecionar_pais_roleta(populacao, fitness)
             filho1, filho2 = crossover(pai1, pai2)
             nova_populacao.append(mutar(filho1))
